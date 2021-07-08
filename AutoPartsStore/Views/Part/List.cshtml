@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AutoPartsStore.Models.Part>
+﻿@model AutoPartsStore.ViewModels.PartListViewModel
 
 <html>
 <head>
@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-    @foreach (var part in Model)
+    <h1>@Model.CurrentCategory</h1>
+    @foreach (var part in Model.Parts)
     {
         <div>
             <h2>@part.Name</h2>

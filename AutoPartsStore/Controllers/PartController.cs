@@ -1,4 +1,5 @@
 ﻿using AutoPartsStore.Models;
+using AutoPartsStore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,15 @@ namespace AutoPartsStore.Controllers
          _categoryRepository = categoryRepository;
       }
 
-      public ViewResult List()
+      public IActionResult List()
       {
-         return View(_partRepository.GetAllParts);
+         //ViewBag.CurrentCategory = "Bestsellers";
+         //return View(_partRepository.GetAllParts);
+
+         var partListViewModel = new PartListViewModel();
+         partListViewModel.Parts = _partRepository.GetAllParts;
+         partListViewModel.CurrentCategory = "Bestsellers";
+         return View(partListViewModel);
       }
    }
 }
