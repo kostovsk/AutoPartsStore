@@ -1,0 +1,19 @@
+﻿@model IEnumerable<AutoPartsStore.Models.Part>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    @foreach (var part in Model)
+    {
+        <div>
+            <h2>@part.Name</h2>
+            <h3>@part.Price.ToString("c")</h3>
+            <h4>@part.Category.CategoryName</h4>
+        </div>
+    }
+</body>
+</html>
