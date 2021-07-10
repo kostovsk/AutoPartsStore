@@ -7,10 +7,13 @@ namespace AutoPartsStore.Models
 {
    public class CategoryRepository : ICategoryRepository
    {
-      public IEnumerable<Category> GetAllCategories => new List<Category> { 
-         new Category{CategoryId=1, CategoryName="Brakes", CategoryDescription="Parts for the braking system of your vehicle"},
-         new Category{CategoryId=2, CategoryName="Engine", CategoryDescription="Parts for the engine of your vehicle"},
-         new Category{CategoryId=3, CategoryName="Suspension", CategoryDescription="Parts for the suspension of your vehicle"}
-      };
+      private readonly AppDbContext _appDbContext;
+
+      public CategoryRepository(AppDbContext appDbContext)
+      {
+         _appDbContext = appDbContext;
+      }
+
+      public IEnumerable<Category> GetAllCategories => _appDbContext.Categories;
    }
 }
