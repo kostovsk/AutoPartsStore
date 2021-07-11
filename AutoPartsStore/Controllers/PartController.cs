@@ -29,5 +29,14 @@ namespace AutoPartsStore.Controllers
          partListViewModel.CurrentCategory = "Bestsellers";
          return View(partListViewModel);
       }
+
+      public IActionResult Details(int id)
+      {
+         var part = _partRepository.GetPartById(id);
+         if (part == null)
+            return NotFound();
+
+         return View(part);
+      }
    }
 }
