@@ -4,14 +4,5 @@
 <h1>@Model.CurrentCategory</h1>
 @foreach (var part in Model.Parts)
 {
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="@part.ImageThumbnailUrl" alt="image for part" />
-            <div class="caption">
-                <h3 class="pull-right">@part.Price.ToString("c")</h3>
-                <h3><a asp-controller="Part" asp-action="Details" asp-route-id="@part.PartId">@part.Name</a></h3>
-                <p>@part.Description</p>
-            </div>
-        </div>
-    </div>
+    <partial name="_partCard" model="part" />
 }
