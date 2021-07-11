@@ -26,7 +26,7 @@ namespace AutoPartsStore.Controllers
 
          var partListViewModel = new PartListViewModel();
          partListViewModel.Parts = _partRepository.GetAllParts;
-         partListViewModel.CurrentCategory = "Bestsellers";
+         partListViewModel.CurrentCategory = "Honda Civic";
          return View(partListViewModel);
       }
 
