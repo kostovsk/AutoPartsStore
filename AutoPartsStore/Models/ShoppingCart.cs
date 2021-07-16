@@ -28,5 +28,28 @@ namespace AutoPartsStore.Models
 
          return new ShoppingCart(context) { ShoppingCartId = cartId };
       }
+
+      public void AddToCart(Part part, int amount)
+      {
+         var shoppingCartItem = _appDbContext.ShoppingCartItems.SingleOrDefault(s => s.Part.PartId == part.PartId && s.ShoppingCartId == ShoppingCartId);
+
+         if (shoppingCartItem == null)
+         {
+            shoppingCartItem = new ShoppingCartItem
+            {
+               ShoppingCartId = ShoppingCartId,
+               Part = part,
+               Amount = amount
+            };
+
+            _appDbContext.ShoppingCartItems.Add(shoppingCartItem);
+         }
+         else
+         {
+            shoppingCartItem.Amount++;
+         }
+
+         _appDbContext.SaveChanges();
+      }
    }
 }
