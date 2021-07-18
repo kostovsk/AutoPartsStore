@@ -83,5 +83,13 @@ namespace AutoPartsStore.Models
             .Include(s => s.Part)
             .ToList());
       }
+
+      public void ClearCart()
+      {
+         var cartItems = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId);
+
+         _appDbContext.ShoppingCartItems.RemoveRange(cartItems);
+         _appDbContext.SaveChanges();
+      }
    }
 }
