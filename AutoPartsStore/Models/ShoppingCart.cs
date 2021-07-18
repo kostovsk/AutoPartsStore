@@ -91,5 +91,13 @@ namespace AutoPartsStore.Models
          _appDbContext.ShoppingCartItems.RemoveRange(cartItems);
          _appDbContext.SaveChanges();
       }
+
+      public decimal GetShoppingCartTotal()
+      {
+         var total = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
+            .Select(t => t.Part.Price * t.Amount).Sum();
+
+         return total;
+      }
    }
 }
