@@ -31,5 +31,29 @@ namespace AutoPartsStore.Controllers
 
          return View(shoppingCartViewModel);
       }
+
+      public RedirectToActionResult AddToShoppingCart(int partId)
+      {
+         var selectedPart = _partRepository.GetAllParts.FirstOrDefault(p => p.PartId == partId);
+
+         if (selectedPart != null)
+         {
+            _shoppingCart.AddToCart(selectedPart, 1);
+         }
+
+         return RedirectToAction("Index");
+      }
+
+      public RedirectToActionResult RemoveFromShoppingCart(int partId)
+      {
+         var selectedPart = _partRepository.GetAllParts.FirstOrDefault(p => p.PartId == partId);
+
+         if (selectedPart != null)
+         {
+            _shoppingCart.RemoveFromCart(selectedPart);
+         }
+
+         return RedirectToAction("Index");
+      }
    }
 }
