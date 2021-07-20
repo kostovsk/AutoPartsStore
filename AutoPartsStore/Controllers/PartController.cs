@@ -19,15 +19,28 @@ namespace AutoPartsStore.Controllers
          _categoryRepository = categoryRepository;
       }
 
-      public IActionResult List()
+      public ViewResult List(string category)
       {
-         //ViewBag.CurrentCategory = "Bestsellers";
-         //return View(_partRepository.GetAllParts);
+         IEnumerable<Part> parts;
+         string currentCategory;
 
-         var partListViewModel = new PartListViewModel();
-         partListViewModel.Parts = _partRepository.GetAllParts;
-         partListViewModel.CurrentCategory = "Honda Civic";
-         return View(partListViewModel);
+         if (string.IsNullOrEmpty(category))
+         {
+            parts = _partRepository.GetAllParts.OrderBy(c => c.PartId);
+            currentCategory = "All Candy";
+         }
+         else
+         {
+            parts = _partRepository.GetAllParts.Where(c => c.Category.CategoryName == category);
+
+            currentCategory = _categoryRepository.GetAllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+         }
+
+         return View(new PartListViewModel
+         {
+            Parts = parts,
+            CurrentCategory = currentCategory
+         });
       }
 
       public IActionResult Details(int id)
