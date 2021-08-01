@@ -42,5 +42,11 @@ namespace AutoPartsStore.Controllers
 
          return View(order);
       }
+
+      public IActionResult CheckoutComplete()
+      {
+         ViewBag.CheckoutCompleteMessage = "Thank you for your order.";
+         return View();
+      }
    }
 }
