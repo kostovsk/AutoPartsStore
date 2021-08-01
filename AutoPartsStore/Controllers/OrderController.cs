@@ -22,5 +22,25 @@ namespace AutoPartsStore.Controllers
       {
          return View();
       }
+
+      [HttpPost]
+      public IActionResult Checkout(Order order)
+      {
+         _shoppingCart.ShoppingCartItems = _shoppingCart.GetShoppingCartItems();
+
+         if (_shoppingCart.ShoppingCartItems.Count == 0)
+         {
+            ModelState.AddModelError("", "Your cart is empty");
+         }
+
+         if (ModelState.IsValid)
+         {
+            _orderRepository.CreateOrder(order);
+            _shoppingCart.ClearCart();
+            return RedirectToAction("CheckoutComplete");
+         }
+
+         return View(order);
+      }
    }
 }
