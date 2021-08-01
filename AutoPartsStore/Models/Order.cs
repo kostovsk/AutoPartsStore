@@ -23,7 +23,7 @@ namespace AutoPartsStore.Models
       public string LastName { get; set; }
 
       [Required(ErrorMessage = "Please enter your address")]
-      [Display(Name = "Street address")]
+      [Display(Name = "Street Address")]
       [StringLength(100)]
       public string Address { get; set; }
 
@@ -35,10 +35,12 @@ namespace AutoPartsStore.Models
       public string State { get; set; }
 
       [Required(ErrorMessage = "Please enter your zip")]
+      [Display(Name = "Zip Code")]
       [StringLength(5, MinimumLength = 5)]
       public string ZipCode { get; set; }
 
       [Required(ErrorMessage = "Please enter your phone number")]
+      [Display(Name = "Phone Number")]
       [DataType(DataType.PhoneNumber)]
       public string PhoneNumber { get; set; }
 
